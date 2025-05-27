@@ -15,6 +15,10 @@ class Project extends Model
         "end_date"
     ];
 
+    protected $casts = [
+        'status' => 'string',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

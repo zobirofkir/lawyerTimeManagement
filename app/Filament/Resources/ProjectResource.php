@@ -35,11 +35,11 @@ class ProjectResource extends Resource
                             ->maxLength(65535),
                         Forms\Components\Select::make('status')
                             ->options([
-                                'ouvert' => 'Ouvert',
-                                'en_cours' => 'En cours',
-                                'fermé' => 'Fermé',
+                                'open' => 'Open',
+                                'in_progress' => 'In Progress',
+                                'closed' => 'Closed',
                             ])
-                            ->default('ouvert')
+                            ->default('open') 
                             ->required(),
                         Forms\Components\DatePicker::make('start_date')
                             ->nullable(),
