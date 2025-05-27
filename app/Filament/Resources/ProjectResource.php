@@ -28,12 +28,12 @@ class ProjectResource extends Resource
             ->schema([
                 Forms\Components\Fieldset::make('Détails du projet')
                     ->schema([
-                        Forms\Components\TextInput::make('titre')
+                        Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Textarea::make('description')
                             ->maxLength(65535),
-                        Forms\Components\Select::make('statut')
+                        Forms\Components\Select::make('status')
                             ->options([
                                 'ouvert' => 'Ouvert',
                                 'en_cours' => 'En cours',
@@ -41,9 +41,9 @@ class ProjectResource extends Resource
                             ])
                             ->default('ouvert')
                             ->required(),
-                        Forms\Components\DatePicker::make('date_de_début')
+                        Forms\Components\DatePicker::make('start_date')
                             ->nullable(),
-                        Forms\Components\DatePicker::make('date_de_fin')
+                        Forms\Components\DatePicker::make('end_date')
                             ->nullable(),
                         Forms\Components\Select::make('client_id')
                             ->label('Client')
@@ -57,14 +57,14 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('titre')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('statut')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('date_de_début')->date()->sortable(),
-                Tables\Columns\TextColumn::make('date_de_fin')->date()->sortable(),
-                Tables\Columns\TextColumn::make('créé_le')->date()->sortable(),
+                Tables\Columns\TextColumn::make('title')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('status')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('start_date')->date()->sortable(),
+                Tables\Columns\TextColumn::make('end_date')->date()->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->date()->sortable(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('statut')
+                Tables\Filters\SelectFilter::make('status')
                     ->options([
                         'ouvert' => 'Ouvert',
                         'en_cours' => 'En cours',
