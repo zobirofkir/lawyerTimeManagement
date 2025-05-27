@@ -45,6 +45,10 @@ class ProjectResource extends Resource
                             ->nullable(),
                         Forms\Components\DatePicker::make('date_de_fin')
                             ->nullable(),
+                        Forms\Components\Select::make('client_id')
+                            ->label('Client')
+                            ->relationship('client', 'name')
+                            ->required(),
                     ]),
             ]);
     }
