@@ -62,7 +62,16 @@ class ClientResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->label('Créé le')->dateTime()->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('user_id')
+                    ->label('Utilisateur')
+                    ->query(fn (Builder $query, array $data) => $query->where('user_id', $data['value']))
+                    ->form([
+                        Forms\Components\Select::make('value')
+                            ->label('Utilisateur')
+                            ->options(
+                                \App\Models\User::pluck('name', 'id')->toArray()
+                            ),
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Modifier'),
