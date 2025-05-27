@@ -13,4 +13,9 @@ class Client extends Model
         "phone",
         "notes"
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
 }
