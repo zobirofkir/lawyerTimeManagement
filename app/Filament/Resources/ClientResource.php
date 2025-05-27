@@ -6,12 +6,14 @@ use App\Filament\Resources\ClientResource\Pages;
 use App\Filament\Resources\ClientResource\RelationManagers;
 use App\Models\Client;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ClientResource extends Resource
 {
@@ -43,8 +45,10 @@ class ClientResource extends Resource
                         Forms\Components\Textarea::make('notes')
                             ->label('Notes')
                             ->maxLength(500),
+
+                        Hidden::make('user_id')->default(Auth::user()->id)
                     ]),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -58,7 +62,7 @@ class ClientResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->label('Créé le')->dateTime()->sortable(),
             ])
             ->filters([
-                Tables\Filters\Filter::make('created_at')->label('Créé le')->dateRange(),
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Modifier'),
