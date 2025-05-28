@@ -50,7 +50,7 @@ class ProjectResource extends Resource
                             ->relationship('client', 'name')
                             ->required(),
                     ]),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
