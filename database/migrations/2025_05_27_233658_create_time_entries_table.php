@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('time_entries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('task');
             $table->text('description')->nullable();

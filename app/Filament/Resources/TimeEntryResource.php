@@ -6,10 +6,12 @@ use App\Filament\Resources\TimeEntryResource\Pages;
 use App\Models\TimeEntry;
 use App\Models\Project;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class TimeEntryResource extends Resource
 {
@@ -43,6 +45,8 @@ class TimeEntryResource extends Resource
                     ->label('Duration (Minutes)')
                     ->numeric()
                     ->required(),
+                Hidden::make('user_id')
+                    ->default(Auth::id())
             ]);
     }
 
@@ -67,7 +71,7 @@ class TimeEntryResource extends Resource
                     ->label('Duration (Minutes)'),
             ])
             ->filters([
-                // Add filters if needed
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

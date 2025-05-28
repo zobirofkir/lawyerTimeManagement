@@ -70,6 +70,16 @@ class ProjectResource extends Resource
                         'en_cours' => 'En cours',
                         'fermé' => 'Fermé',
                     ]),
+                Tables\Filters\Filter::make('client_id')
+                    ->label('Client')
+                    ->query(fn (Builder $query, array $data) => $query->where('client_id', $data['value']))
+                    ->form([
+                        Forms\Components\Select::make('value')
+                            ->label('Client')
+                            ->options(
+                                \App\Models\Client::pluck('name', 'id')->toArray()
+                            ),
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
